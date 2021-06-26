@@ -6,11 +6,11 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/26 15:08:23 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/26 21:05:45 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 void	init_props(t_prop *props)
@@ -22,53 +22,9 @@ void	init_props(t_prop *props)
 	props->type = 0;
 }
 
-int	parse_prec(const char *str, int i, va_list args, t_prop *props)
-{
-	if (str[i+1] == '*')
-	{
-		props->prec = va_arg(args, int);
-		return (1);
-	}
-	else if (ft_isdigit(str[i+1]) || str[i+1] == '-')
-		return (parse_width(str, ++i, props));
-	else
-	{
-		props->prec = 0;
-		return (0);
-	}
-}
-
-int	parse_width(const char *str, int i, t_prop *props)
-{
-	unsigned int	start;
-	size_t			len;
-	char			*sub;
-
-	start = i;
-	len = 0;
-	while (ft_isdigit(str[i]))
-	{
-		len++;
-		i++;
-	}
-	sub = ft_substr(str, start, len);
-	if (str[start-1] == '.')
-		props->prec = ft_atoi(sub);
-	else
-		props->width = ft_atoi(sub);
-	free(sub);
-	return (--len);
-}
-
-int	check_type(char c)
-{
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
-			c == 'u' || c == 'x' || c == 'X' || c == '%');
-}
-
 int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 {
-	while(!ft_isalpha(str[i]) && str[i])
+	while (!ft_isalpha(str[i]) && str[i])
 	{
 		if (str[i] == '-')
 			props->minus++;
@@ -99,15 +55,17 @@ void	write_props(t_prop *props)
 	printf("type = %c\n", props->type);
 }
 
-/*int	arg_handler(const char *str, va_list args, int i, t_prop *props)
+int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	if (str[i] == 'd')
-		count = mod_putnbr(va_arg(args, int), props);
+	if (str[i] == 'd' || str[i] == 'i')
+		count = dec_int_handler(args, props);
+	else if (str[i] == 'c')
+		count = char_handler(va_arg(args, int), props);
 	return (count);
-}*/
+}
 
 int	parser(const char *str, va_list args, t_prop *props)
 {
@@ -121,8 +79,9 @@ int	parser(const char *str, va_list args, t_prop *props)
 		if (str[i] == '%')
 		{
 			i = prop_handler(str, args, ++i, props);
-			write_props(props);
-			//count_char += arg_handler(str, args, i, props);
+			//write_props(props);
+			count_char += arg_handler(str, args, i, props);
+			init_props(props);
 			i++;
 		}
 		else

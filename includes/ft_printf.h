@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:31:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/26 13:45:31 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/26 20:52:12 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ int		prop_handler(const char *str, va_list args, int i, t_prop *props);
 int		parse_prec(const char *str, int i, va_list args, t_prop *props);
 int		parse_width(const char *str, int i, t_prop *props);
 int		check_type(char c);
+int		dec_int_handler(va_list args, t_prop *props);
+int		char_handler(char c, t_prop *props);
+int		width_handler(int offset, int zero);
 
 #endif
