@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_handler.c                                    :+:      :+:    :+:   */
+/*   mod_putstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/26 20:38:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/28 19:47:55 by echerell         ###   ########.fr       */
+/*   Created: 2021/06/28 19:36:54 by echerell          #+#    #+#             */
+/*   Updated: 2021/06/28 19:41:21 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	width_handler(int offset, int zero)
+int	mod_putstr(char *str, int prec)
 {
 	int	count;
 
 	count = 0;
-	while (offset > 0)
+	while (str[count] && count < prec)
 	{
-		if (zero)
-			ft_putchar_fd('0', 1);
-		else
-			ft_putchar_fd(' ', 1);
-		offset--;
+		ft_putchar_fd(str[count], 1);
 		count++;
 	}
 	return (count);

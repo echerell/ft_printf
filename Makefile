@@ -3,10 +3,11 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
 SRCS = sources/ft_printf.c sources/flag_parsing.c sources/dec_int_handler.c \
-		sources/char_handler.c sources/width_handler.c
+		sources/char_handler.c sources/width_handler.c sources/str_handler.c \
+		sources/mod_putstr.c
 
 OBJS = ft_printf.o flag_parsing.o dec_int_handler.o char_handler.o \
-		width_handler.o
+		width_handler.o str_handler.o mod_putstr.o
 
 INCLUDES = -I./includes
 

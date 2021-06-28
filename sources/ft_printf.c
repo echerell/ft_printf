@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/26 21:05:45 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/28 19:28:12 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_props(t_prop *props)
 	props->minus = 0;
 	props->zero = 0;
 	props->width = 0;
-	props->prec = 0;
+	props->prec = -1;
 	props->type = 0;
 }
 
@@ -27,11 +27,14 @@ int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 	while (!ft_isalpha(str[i]) && str[i])
 	{
 		if (str[i] == '-')
-			props->minus++;
+		{
+			props->minus = 1;
+			props->zero = 0;
+		}
 		else if (str[i] == '0')
-			props->zero++;
+			props->zero = 1;
 		else if (str[i] == '*')
-			props->width = va_arg(args, int);
+			parse_star(va_arg(args, int), props);
 		else if (str[i] == '.')
 			i += parse_prec(str, i, args, props) + 1;
 		else if (ft_isdigit(str[i]))
@@ -60,10 +63,12 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 	int	count;
 
 	count = 0;
-	if (str[i] == 'd' || str[i] == 'i')
-		count = dec_int_handler(args, props);
-	else if (str[i] == 'c')
+	if (str[i] == 'c')
 		count = char_handler(va_arg(args, int), props);
+	else if (str[i] == 's')
+		count = str_handler(va_arg(args, char*), props);
+	else if (str[i] == 'd' || str[i] == 'i')
+		count = dec_int_handler(args, props);
 	return (count);
 }
 
