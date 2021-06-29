@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 16:39:51 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 17:38:24 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,7 @@ int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 			i += parse_width(str, i, props);
 		i++;
 	}
-	// don't forget
-	if (check_type(str[i]))
-		props->type = str[i];
-	else
-		props->type = 0;
+	props->type = str[i];
 	return (i);
 }
 
@@ -72,6 +68,8 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 		count = ptr_handler(va_arg(args, unsigned long), props);
 	else if (str[i] == 'd' || str[i] == 'i')
 		count = dec_int_handler(va_arg(args, int), props);
+	else if (str[i] == 'u')
+		count = uint_handler(va_arg(args, unsigned int), props);
 	return (count);
 }
 

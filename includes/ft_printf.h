@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:31:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 16:39:26 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 19:52:44 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,13 @@ int		mod_putstr(char *str, int prec);
 int		char_handler(char c, t_prop *props);
 
 int		str_handler(char *str, t_prop *props);
-int		putpart_str(char *str, t_prop *props);
 
 int		ptr_handler(unsigned long val, t_prop *props);
 char	*atoi_base(unsigned long val, int base);
-void	make_digit(char *str, int base, unsigned long val, int i);
-int		putpart_ptr(char *str, t_prop *props);
 
 int		dec_int_handler(int val, t_prop *props);
-int		putpart_int(char *str, int save, t_prop *props);
-int		put_prec_int(char *str, int save, t_prop *props);
+
+int		uint_handler(unsigned int val, t_prop *props);
+char	*u_itoa(unsigned int n);
 
 #endif

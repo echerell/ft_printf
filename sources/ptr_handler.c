@@ -6,13 +6,13 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:07:31 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 16:53:00 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 19:51:16 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	putpart_ptr(char *ptr, t_prop *props)
+static	int	putpart_ptr(char *ptr, t_prop *props)
 {
 	int	count;
 

@@ -1,49 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_base.c                                        :+:      :+:    :+:   */
+/*   u_itoa.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 11:59:20 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 19:51:36 by echerell         ###   ########.fr       */
+/*   Created: 2021/06/29 19:32:46 by echerell          #+#    #+#             */
+/*   Updated: 2021/06/29 19:49:40 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static	void	make_digit(char *str, int base, unsigned long val, int i)
+static	int		ft_count_nbr(long tmp, size_t i)
 {
-	while (val)
+	while (tmp >= 1)
 	{
-		if ((val % base) < 10)
-			str[i - 1] = (val % base) + 48;
-		else
-			str[i - 1] = (val % base) + 87;
-		val /= base;
-		i--;
+		i++;
+		tmp /= 10;
 	}
+	return (i);
 }
 
-char	*atoi_base(unsigned long val, int base)
+static	void	ft_make_str(char *str, long tmp, size_t i)
 {
-	char			*str;
-	int				i;
-	unsigned long	save;
-
-	save = val;
-	i = 0;
-	if (!val)
-		return (ft_strdup("0"));
-	while (val)
+	while (i)
 	{
-		val /= base;
-		i++;
+		str[i--] = tmp % 10 + '0';
+		tmp /= 10;
 	}
-	str = malloc((i + 1) * sizeof(char));
+	str[i] = tmp % 10 +'0';
+}
+
+char	*u_itoa(unsigned int n)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	i = ft_count_nbr((long)n, i);
+	if (n == 0)
+		i++;
+	str = (char *)malloc((i + 1) * sizeof(char));
 	if (!str)
-		return (0);
-	make_digit(str, base, save, i);
-	str[i] = '\0';
+		return (NULL);
+	str[i--] = '\0';
+	ft_make_str(str, (long)n, i);
 	return (str);
 }
