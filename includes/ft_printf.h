@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:31:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 19:52:44 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 20:55:15 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,11 @@ int		dec_int_handler(int val, t_prop *props);
 
 int		uint_handler(unsigned int val, t_prop *props);
 char	*u_itoa(unsigned int n);
+int		putpart_uint(char *str, t_prop *props);
+int		put_prec_uint(char *str, t_prop *props);
+
+int		hex_handler(unsigned int val, int capital, t_prop *props);
+
+int		per_handler(t_prop *props);
 
 #endif

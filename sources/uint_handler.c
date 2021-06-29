@@ -6,13 +6,13 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:38:45 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 20:11:58 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:06:39 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static	int	put_prec_uint(char *str, t_prop *props)
+int	put_prec_uint(char *str, t_prop *props)
 {
 	int	count;
 
@@ -23,7 +23,7 @@ static	int	put_prec_uint(char *str, t_prop *props)
 	return (count);
 }
 
-static	int	putpart_uint(char *str, t_prop *props)
+int	putpart_uint(char *str, t_prop *props)
 {
 	int	count;
 
@@ -54,7 +54,7 @@ int	uint_handler(unsigned int val, t_prop *props)
 	if (!props->prec && !val)
 	{
 		count += width_handler(props->width, 0);
-		return(count);
+		return (count);
 	}
 	str = u_itoa(val);
 	count += putpart_uint(str, props);

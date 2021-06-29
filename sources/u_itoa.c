@@ -6,13 +6,13 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:32:46 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 19:49:40 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:07:52 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static	int		ft_count_nbr(long tmp, size_t i)
+static	int	ft_count_nbr(long tmp, size_t i)
 {
 	while (tmp >= 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 17:38:24 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:03:16 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_props(t_prop *props)
 
 int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 {
-	while (!ft_isalpha(str[i]) && str[i])
+	while (!ft_isalpha(str[i]) && str[i] && str[i] != '%')
 	{
 		if (str[i] == '-')
 		{
@@ -70,6 +70,17 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 		count = dec_int_handler(va_arg(args, int), props);
 	else if (str[i] == 'u')
 		count = uint_handler(va_arg(args, unsigned int), props);
+	else if (str[i] == 'x')
+		count = hex_handler(va_arg(args, unsigned int), 0, props);
+	else if (str[i] == 'X')
+		count = hex_handler(va_arg(args, unsigned int), 1, props);
+	else if (str[i] == '%')
+		count = per_handler(props);
+	else
+	{
+		ft_putchar_fd(str[i], 1);
+		return (1);
+	}
 	return (count);
 }
 
