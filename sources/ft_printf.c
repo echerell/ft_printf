@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/28 19:28:12 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 12:51:08 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 	if (str[i] == 'c')
 		count = char_handler(va_arg(args, int), props);
 	else if (str[i] == 's')
-		count = str_handler(va_arg(args, char*), props);
+		count = str_handler(va_arg(args, char *), props);
+	else if (str[i] == 'p')
+		count = ptr_handler(va_arg(args, unsigned long), props);
 	else if (str[i] == 'd' || str[i] == 'i')
 		count = dec_int_handler(args, props);
 	return (count);
