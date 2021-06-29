@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:07:31 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 13:04:55 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/29 16:53:00 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ptr_handler(unsigned long val, t_prop *props)
 	if (props->prec < 0)
 		count += width_handler(props->width - ft_strlen(ptr) - 2, 0);
 	else
-		count += width_handler(props->width - (props->prec - ft_strlen(ptr)) -
-		ft_strlen(ptr) - 2, 0);
+		count += width_handler(props->width - (props->prec - ft_strlen(ptr))
+				- ft_strlen(ptr) - 2, 0);
 	if (!props->minus)
 		count += putpart_ptr(ptr, props);
 	free(ptr);
