@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 21:03:16 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:20:56 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 	else if (str[i] == 'X')
 		count = hex_handler(va_arg(args, unsigned int), 1, props);
 	else if (str[i] == '%')
-		count = per_handler(props);
+		count += mod_putstr("%", 1);
 	else
 	{
 		ft_putchar_fd(str[i], 1);

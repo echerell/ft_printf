@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 18:24:38 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/28 19:16:08 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:08:06 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_prec(const char *str, int i, va_list args, t_prop *props)
 	{
 		props->prec = va_arg(args, int);
 		if (props->prec < 0)
-			props->prec *= -1;
+			props->prec = -1;
 		return (0);
 	}
 	else if (ft_isdigit(str[i + 1]))

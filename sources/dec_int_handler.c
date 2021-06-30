@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 18:35:32 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 19:51:02 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/30 14:51:14 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ static	int	putpart_int(char *str, int save, t_prop *props)
 	if (props->prec >= 0)
 	{
 		props->width -= props->prec;
-		if (save == INT_MIN)
-			count += width_handler(props->width + 1, 0) - 1;
-		else
-			count += width_handler(props->width, 0);
+		count += width_handler(props->width, 0);
 	}
 	else
 		count += width_handler(props->width - ft_strlen(str), props->zero);
@@ -62,7 +59,7 @@ int	dec_int_handler(int val, t_prop *props)
 		count += width_handler(props->width, 0);
 		return (count);
 	}
-	if (val < 0 && (props->prec >= 0 || props->zero))
+	if (val < 0 && (props->prec >= 0 || props->zero) && val != INT_MIN)
 	{
 		if (props->zero && props->prec < 0)
 			ft_putchar_fd('-', 1);

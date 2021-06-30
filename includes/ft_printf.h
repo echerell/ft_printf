@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:31:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/29 20:55:15 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:25:27 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ int		putpart_uint(char *str, t_prop *props);
 int		put_prec_uint(char *str, t_prop *props);
 
 int		hex_handler(unsigned int val, int capital, t_prop *props);
-
-int		per_handler(t_prop *props);
 
 #endif
