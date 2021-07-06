@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/30 15:20:56 by echerell         ###   ########.fr       */
+/*   Updated: 2021/06/30 18:43:40 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 	while (!ft_isalpha(str[i]) && str[i] && str[i] != '%')
 	{
 		if (str[i] == '-')
-		{
 			props->minus = 1;
-			props->zero = 0;
-		}
 		else if (str[i] == '0')
 			props->zero = 1;
 		else if (str[i] == '*')
