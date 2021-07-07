@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 18:24:38 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/30 15:08:06 by echerell         ###   ########.fr       */
+/*   Updated: 2021/07/07 12:31:38 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,4 @@ int	parse_width(const char *str, int i, t_prop *props)
 		props->width = ft_atoi(sub);
 	free(sub);
 	return (--len);
-}
-
-int	check_type(char c)
-{
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
-		|| c == 'u' || c == 'x' || c == 'X' || c == '%');
 }

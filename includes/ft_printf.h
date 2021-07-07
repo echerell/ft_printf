@@ -6,7 +6,7 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:31:37 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/30 15:25:27 by echerell         ###   ########.fr       */
+/*   Updated: 2021/07/07 12:44:26 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int		arg_handler(const char *str, va_list args, int i, t_prop *props);
 void	parse_star(int val, t_prop *props);
 int		parse_prec(const char *str, int i, va_list args, t_prop *props);
 int		parse_width(const char *str, int i, t_prop *props);
-int		check_type(char c);
 
 int		width_handler(int offset, int zero);
 int		mod_putstr(char *str, int prec);
@@ -55,5 +54,7 @@ int		putpart_uint(char *str, t_prop *props);
 int		put_prec_uint(char *str, t_prop *props);
 
 int		hex_handler(unsigned int val, int capital, t_prop *props);
+
+int		per_handler(t_prop *props);
 
 #endif

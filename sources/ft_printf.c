@@ -6,12 +6,11 @@
 /*   By: echerell <echerell@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 18:30:06 by echerell          #+#    #+#             */
-/*   Updated: 2021/06/30 18:43:40 by echerell         ###   ########.fr       */
+/*   Updated: 2021/07/07 14:33:08 by echerell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 void	init_props(t_prop *props)
 {
@@ -38,18 +37,10 @@ int	prop_handler(const char *str, va_list args, int i, t_prop *props)
 			i += parse_width(str, i, props);
 		i++;
 	}
+	if (props->minus)
+		props->zero = 0;
 	props->type = str[i];
 	return (i);
-}
-
-void	write_props(t_prop *props)
-{
-	printf("\n############################################\n");
-	printf("minus = %d\n", props->minus);
-	printf("zero = %d\n", props->zero);
-	printf("width = %d\n", props->width);
-	printf("precision = %d\n", props->prec);
-	printf("type = %c\n", props->type);
 }
 
 int	arg_handler(const char *str, va_list args, int i, t_prop *props)
@@ -72,7 +63,7 @@ int	arg_handler(const char *str, va_list args, int i, t_prop *props)
 	else if (str[i] == 'X')
 		count = hex_handler(va_arg(args, unsigned int), 1, props);
 	else if (str[i] == '%')
-		count += mod_putstr("%", 1);
+		count += per_handler(props);
 	else
 	{
 		ft_putchar_fd(str[i], 1);
@@ -93,7 +84,6 @@ int	parser(const char *str, va_list args, t_prop *props)
 		if (str[i] == '%')
 		{
 			i = prop_handler(str, args, ++i, props);
-			//write_props(props);
 			count_char += arg_handler(str, args, i, props);
 			init_props(props);
 			i++;
